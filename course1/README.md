@@ -26,6 +26,7 @@ First, make sure your Debian package index is up-to-date:
 sudo apt-get update
 ```
 There are many different libraries and tools in ROS. We provided four default configurations to get you started. You can also install ROS packages individually.
+
 Desktop-Full Install: (Recommended) : ROS, rqt, rviz, robot-generic libraries, 2D/3D simulators, navigation and 2D/3D perception:
 ```
 sudo apt-get install ros-kinetic-desktop-full
@@ -62,4 +63,5 @@ source ~/.zshrc
 
 #### References
 [ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz.ch/education-students/lectures/ros.html)
+
 [Youtube - Programming for Robotics (ROS) Course 1](https://www.youtube.com/watch?v=0BxVPCInS3M&list=PLE-BQwvVGf8HOvwXPgtDfWoxd4Cc6ghiP&index=1)
