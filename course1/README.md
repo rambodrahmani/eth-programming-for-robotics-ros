@@ -61,4 +61,5 @@ source ~/.zshrc
 ```
 
 #### References
-[ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz$
+[ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz.ch/education-students/lectures/ros.html)
+[Youtube - Programming for Robotics (ROS) Course 1](https://www.youtube.com/watch?v=0BxVPCInS3M&list=PLE-BQwvVGf8HOvwXPgtDfWoxd4Cc6ghiP&index=1)
