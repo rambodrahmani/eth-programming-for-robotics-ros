@@ -218,6 +218,37 @@ turtle_actionlib/  turtlesim/         turtle_tf/         turtle_tf2/
 ros@ros:/opt/ros/kinetic/share/roscpp_tutorials$ roscd turtle
 ```
 
+
+ros@ros:~/catkin_ws$ roscore
+... logging to /home/ros/.ros/log/6616dd8a-1cb9-11e9-bbef-0800279864a6/roslaunch-ros-4606.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://ros:46527/
+ros_comm version 1.12.14
+
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: kinetic
+ * /rosversion: 1.12.14
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [4617]
+ROS_MASTER_URI=http://ros:11311/
+
+setting /run_id to 6616dd8a-1cb9-11e9-bbef-0800279864a6
+process[rosout-1]: started with pid [4630]
+started core service [/rosout]
+
+
+
+
 #### References
 [ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz.ch/education-students/lectures/ros.html)
 
@@ -228,3 +259,11 @@ ros@ros:/opt/ros/kinetic/share/roscpp_tutorials$ roscd turtle
 [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
 
 [Navigating the ROS Filesystem](http://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem)
+
+[Creating a ROS Package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage)
+
+[Building a ROS Package](http://wiki.ros.org/ROS/Tutorials/BuildingPackages)
+
+[Understanding ROS Nodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes)
+
+[Understanding ROS Topics](http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics)

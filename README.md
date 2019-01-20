@@ -26,6 +26,12 @@ catkin is the official build system of ROS and the successor to the original ROS
 
 The name catkin comes from the tail-shaped flower cluster found on willow trees -- a reference to Willow Garage where catkin was created. 
 
+#### Installing catkin
+Catkin is included by default when ROS is installed. Catkin can also be installed from source or prebuilt packages. Most users will want to use the prebuilt packages, but installing it from source is also quite simple.
+```
+ros@ros:~$ sudo apt-get install python-catkin-tools
+```
+
 #### What is a Build System?
 A build system is responsible for generating 'targets' from raw source code that can be used by an end user. These targets may be in the form of libraries, executable programs, generated scripts, exported interfaces (e.g. C++ header files) or anything else that is not static code. In ROS terminology, source code is organized into 'packages' where each package typically consists of one or more targets when built.
 
