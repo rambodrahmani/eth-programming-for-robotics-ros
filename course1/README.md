@@ -218,33 +218,275 @@ turtle_actionlib/  turtlesim/         turtle_tf/         turtle_tf2/
 ros@ros:/opt/ros/kinetic/share/roscpp_tutorials$ roscd turtle
 ```
 
+## Creating a ROS Package
+Description: This tutorial covers using roscreate-pkg or catkin to create a new package, and rospack to list package dependencies.
 
-ros@ros:~/catkin_ws$ roscore
-... logging to /home/ros/.ros/log/6616dd8a-1cb9-11e9-bbef-0800279864a6/roslaunch-ros-4606.log
-Checking log directory for disk usage. This may take awhile.
-Press Ctrl-C to interrupt
-Done checking log file disk usage. Usage is <1GB.
+## What makes up a catkin Package?
+For a package to be considered a catkin package it must meet a few requirements:
+ - The package must contain a catkin compliant package.xml file.
+   - That package.xml file provides meta information about the package.
+ - The package must contain a CMakeLists.txt which uses catkin.
+   - If it is a catkin metapackage it must have the relevant boilerplate CMakeLists.txt file.
+ - Each package must have its own folder
+   - This means no nested packages nor multiple packages sharing the same directory.
 
-started roslaunch server http://ros:46527/
-ros_comm version 1.12.14
+The simplest possible package might have a structure which looks like this: 
+```
+my_package/
+	CMakeLists.txt
+	package.xml
+```
+
+## Packages in a catkin Workspace
+The recommended method of working with catkin packages is using a catkin workspace, but you can also build catkin packages standalone. A trivial workspace might look like this: 
+```
+workspace_folder/        -- WORKSPACE
+	src/                   -- SOURCE SPACEC
+		MakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
+		package_1/
+			CMakeLists.txt     -- CMakeLists.txt file for package_1
+			package.xml        -- Package manifest for package_1
+
+		...
+		package_n/
+			CMakeLists.txt     -- CMakeLists.txt file for package_n
+			package.xml        -- Package manifest for package_n
+```
+
+## Creating a catkin Package
+This tutorial will demonstrate how to use the catkin_create_pkg script to create a new catkin package, and what you can do with it after it has been created.
+
+First change to the source space directory of the catkin workspace you created
 
 
-SUMMARY
-========
 
-PARAMETERS
- * /rosdistro: kinetic
- * /rosversion: 1.12.14
+ros@ros:~/catkin_ws/src$ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+Created file beginner_tutorials/CMakeLists.txt
+Created file beginner_tutorials/package.xml
+Created folder beginner_tutorials/include/beginner_tutorials
+Created folder beginner_tutorials/src
+Successfully created files in /home/ros/catkin_ws/src/beginner_tutorials. Please adjust the values in package.xml.
 
-NODES
 
-auto-starting new master
-process[master]: started with pid [4617]
-ROS_MASTER_URI=http://ros:11311/
 
-setting /run_id to 6616dd8a-1cb9-11e9-bbef-0800279864a6
-process[rosout-1]: started with pid [4630]
-started core service [/rosout]
+ros@ros:~/catkin_ws/src$ cd ~/catkin_ws
+ros@ros:~/catkin_ws$ catkin_make
+Base path: /home/ros/catkin_ws
+Source space: /home/ros/catkin_ws/src
+Build space: /home/ros/catkin_ws/build
+Devel space: /home/ros/catkin_ws/devel
+Install space: /home/ros/catkin_ws/install
+####
+#### Running command: "cmake /home/ros/catkin_ws/src -DCATKIN_DEVEL_PREFIX=/home/ros/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros/catkin_ws/install -G Unix Makefiles" in "/home/ros/catkin_ws/build"
+####
+-- Using CATKIN_DEVEL_PREFIX: /home/ros/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/kinetic
+-- This workspace overlays: /opt/ros/kinetic
+-- Using PYTHON_EXECUTABLE: /usr/bin/python
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/ros/catkin_ws/build/test_results
+-- Found gmock sources under '/usr/src/gmock': gmock will be built
+-- Found gtest sources under '/usr/src/gmock': gtests will be built
+-- Using Python nosetests: /usr/bin/nosetests-2.7
+-- catkin 0.7.14
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 2 packages in topological order:
+-- ~~  - beginner_tutorials
+-- ~~  - ros_package_template
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'beginner_tutorials'
+-- ==> add_subdirectory(beginner_tutorials)
+-- +++ processing catkin package: 'ros_package_template'
+-- ==> add_subdirectory(ros_best_practices/ros_package_template)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ros/catkin_ws/build
+####
+#### Running command: "make -j2 -l2" in "/home/ros/catkin_ws/build"
+####
+Scanning dependencies of target sensor_msgs_generate_messages_nodejs
+Scanning dependencies of target std_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+Scanning dependencies of target std_msgs_generate_messages_nodejs
+Scanning dependencies of target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_eus
+Scanning dependencies of target roscpp_generate_messages_lisp
+Scanning dependencies of target roscpp_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_nodejs
+Scanning dependencies of target roscpp_generate_messages_eus
+Scanning dependencies of target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_eus
+Scanning dependencies of target rosgraph_msgs_generate_messages_nodejs
+Scanning dependencies of target roscpp_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_cpp
+Scanning dependencies of target rosgraph_msgs_generate_messages_eus
+Scanning dependencies of target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_py
+Scanning dependencies of target rosgraph_msgs_generate_messages_cpp
+Scanning dependencies of target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+Scanning dependencies of target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+Scanning dependencies of target rosgraph_msgs_generate_messages_py
+Scanning dependencies of target geometry_msgs_generate_messages_nodejs
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+Scanning dependencies of target geometry_msgs_generate_messages_lisp
+Scanning dependencies of target geometry_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_lisp
+Scanning dependencies of target sensor_msgs_generate_messages_cpp
+Scanning dependencies of target geometry_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_cpp
+Scanning dependencies of target sensor_msgs_generate_messages_py
+Scanning dependencies of target sensor_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_lisp
+Scanning dependencies of target geometry_msgs_generate_messages_cpp
+Scanning dependencies of target sensor_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_eus
+Scanning dependencies of target ros_package_template_core
+[ 20%] Building CXX object ros_best_practices/ros_package_template/CMakeFiles/ros_package_template_core.dir/src/Algorithm.cpp.o
+[ 40%] Linking CXX shared library /home/ros/catkin_ws/devel/lib/libros_package_template_core.so
+[ 40%] Built target ros_package_template_core
+Scanning dependencies of target ros_package_template
+[ 60%] Building CXX object ros_best_practices/ros_package_template/CMakeFiles/ros_package_template.dir/src/ros_package_template_node.cpp.o
+[ 80%] Building CXX object ros_best_practices/ros_package_template/CMakeFiles/ros_package_template.dir/src/RosPackageTemplate.cpp.o
+[100%] Linking CXX executable /home/ros/catkin_ws/devel/lib/ros_package_template/ros_package_template
+[100%] Built target ros_package_template
+
+
+ros@ros:~/catkin_ws$ source ~/catkin_ws/devel/setup.bash
+
+
+ros@ros:~/catkin_ws$ rospack depends1 beginner_tutorials
+roscpp
+rospy
+std_msgs
+
+
+
+ros@ros:~/catkin_ws$ roscd beginner_tutorials
+ros@ros:~/catkin_ws/src/beginner_tutorials$ cat package.xml 
+<?xml version="1.0"?>
+<package format="2">
+  <name>beginner_tutorials</name>
+  <version>0.0.0</version>
+  <description>The beginner_tutorials package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="ros@todo.todo">ros</maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+
+  <!-- Url tags are optional, but multiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://wiki.ros.org/beginner_tutorials</url> -->
+
+
+  <!-- Author tags are optional, multiple are allowed, one per tag -->
+  <!-- Authors do not have to be maintainers, but could be -->
+  <!-- Example: -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- The *depend tags are used to specify dependencies -->
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <!-- Examples: -->
+  <!-- Use depend as a shortcut for packages that are both build and exec dependencies -->
+  <!--   <depend>roscpp</depend> -->
+  <!--   Note that this is equivalent to the following: -->
+  <!--   <build_depend>roscpp</build_depend> -->
+  <!--   <exec_depend>roscpp</exec_depend> -->
+  <!-- Use build_depend for packages you need at compile time: -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- Use build_export_depend for packages you need in order to build against this package: -->
+  <!--   <build_export_depend>message_generation</build_export_depend> -->
+  <!-- Use buildtool_depend for build tool packages: -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- Use exec_depend for packages you need at runtime: -->
+  <!--   <exec_depend>message_runtime</exec_depend> -->
+  <!-- Use test_depend for packages you need only for testing: -->
+  <!--   <test_depend>gtest</test_depend> -->
+  <!-- Use doc_depend for packages you need only for building documentation: -->
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
+
+
+
+ros@ros:~/catkin_ws/src/beginner_tutorials$ rospack depends1 rospy
+genpy
+roscpp
+rosgraph
+rosgraph_msgs
+roslib
+std_msgs
+
+
+
+ros@ros:~/catkin_ws/src/beginner_tutorials$ rospack depends beginner_tutorials
+cpp_common
+rostime
+roscpp_traits
+roscpp_serialization
+catkin
+genmsg
+genpy
+message_runtime
+gencpp
+geneus
+gennodejs
+genlisp
+message_generation
+rosbuild
+rosconsole
+std_msgs
+rosgraph_msgs
+xmlrpcpp
+roscpp
+rosgraph
+ros_environment
+rospack
+roslib
+rospy
 
 
 

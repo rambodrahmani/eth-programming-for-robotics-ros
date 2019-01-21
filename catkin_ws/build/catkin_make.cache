@@ -1,2 +1,2 @@
-
+beginner_tutorials:ros_best_practices/ros_package_template
 -DCATKIN_DEVEL_PREFIX=/home/ros/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros/catkin_ws/install -G Unix Makefiles

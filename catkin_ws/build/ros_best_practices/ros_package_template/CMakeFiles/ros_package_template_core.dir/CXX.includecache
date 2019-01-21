@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ros/catkin_ws/src/ros_best_practices/ros_package_template/include/ros_package_template/Algorithm.hpp
+
+/home/ros/catkin_ws/src/ros_best_practices/ros_package_template/src/Algorithm.cpp
+ros_package_template/Algorithm.hpp
+/home/ros/catkin_ws/src/ros_best_practices/ros_package_template/src/ros_package_template/Algorithm.hpp
+
