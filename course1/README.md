@@ -615,7 +615,7 @@ ROS client libraries allow nodes written in different programming languages to c
  - roscpp = c++ client library
 
 ### roscore
-roscore is the first thing you should run when using ROS. 
+roscore is the first thing you should run when using ROS. You will see something similar to:
 ```
 ros@ros:~/catkin_ws$ roscore
 ... logging to /home/ros/.ros/log/894496fe-1d6c-11e9-94b0-0800279864a6/roslaunch-ros-3962.log
@@ -644,6 +644,116 @@ setting /run_id to 894496fe-1d6c-11e9-94b0-0800279864a6
 process[rosout-1]: started with pid [3986]
 started core service [/rosout]
 ```
+
+### Using rosnode
+Open up a new terminal, and let's use rosnode to see what running roscore did... Bare in mind to keep the previous terminal open either by opening a new tab or simply minimizing it.
+
+Note: When opening a new terminal your environment is reset and your ~/.bashrc file is sourced. If you have trouble running commands like rosnode then you might need to add some environment setup files to your ~/.bashrc or manually re-source them. 
+
+rosnode displays information about the ROS nodes that are currently running. The rosnode list command lists these active nodes:
+```
+ros@ros:~/catkin_ws$ rosnode list
+/rosout
+```
+This showed us that there is only one node running: rosout. This is always running as it collects and logs nodes' debugging output.
+
+The rosnode info command returns information about a specific node.
+```
+ros@ros:~/catkin_ws$ rosnode info /rosout
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [unknown type]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ros:42047/ ...
+Pid: 10367
+```
+This gave us some more information about rosout, such as the fact that it publishes /rosout_agg.
+
+Now, let's see some more nodes. For this, we're going to use rosrun to bring up another node.
+
+### Using rosrun
+rosrun allows you to use the package name to directly run a node within a package (without having to know the package path).
+
+Usage:
+```
+$ rosrun [package_name] [node_name]
+```
+
+So now we can run the turtlesim_node in the turtlesim package.
+
+Then, in a new terminal:
+```
+ros@ros:~/catkin_ws$ rosrun turtlesim turtlesim_node
+[ INFO] [1548756470.179645554]: Starting turtlesim with node name /turtlesim
+[ INFO] [1548756470.187834461]: Spawning turtle [turtle1] at x=[5,544445], y=[5,544445], theta=[0,000000]
+```
+
+You will see the turtlesim window:
+![turtlesim_window](../images/turtlesim.png)
+
+NOTE: The turtle may look different in your turtlesim window. Don't worry about it - there are many types of turtle and yours is a surprise!
+
+In a new terminal:
+```
+ros@ros:~/catkin_ws$ rosnode list
+/rosout
+/turtlesim
+```
+One powerful feature of ROS is that you can reassign Names from the command-line.
+
+Close the turtlesim window to stop the node (or go back to the rosrun turtlesim terminal and use ctrl-C). You can also leave it open.
+
+Now let's re-run it, but this time use a Remapping Argument to change the node's name:
+```
+ros@ros:~/catkin_ws$ rosrun turtlesim turtlesim_node __name:=rambod
+[ INFO] [1548756518.179137569]: Starting turtlesim with node name /rambod
+[ INFO] [1548756518.187649227]: Spawning turtle [turtle1] at x=[5,544445], y=[5,544445], theta=[0,000000]
+```
+Now, if we go back and use rosnode list:
+```
+ros@ros:~/catkin_ws$ rosnode list
+/rambod
+/rosout
+/turtlesim
+```
+We see our new /rambod node. Let's use another rosnode command, ping, to test that it's up:
+```
+ros@ros:~/catkin_ws$ rosnode ping rambod
+rosnode: node is [/rambod]
+pinging /rambod with a timeout of 3.0s
+xmlrpc reply from http://ros:45291/	time=0.541925ms
+xmlrpc reply from http://ros:45291/	time=0.929117ms
+xmlrpc reply from http://ros:45291/	time=1.637936ms
+xmlrpc reply from http://ros:45291/	time=1.271009ms
+xmlrpc reply from http://ros:45291/	time=1.456976ms
+xmlrpc reply from http://ros:45291/	time=1.240015ms
+^Cping average: 1.179496ms
+```
+
+Finally, kill the running roscore and exit:
+```
+^C[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+done
+```
+
+### Review
+What was covered:
+ - roscore = ros+core : master (provides name service for ROS) + rosout (stdout/stderr) + parameter server (parameter server will be introduced later)
+ - rosnode = ros+node : ROS tool to get information about a node.
+ - rosrun = ros+run : runs a node from a given package.
+Now that you understand how ROS nodes work, let's look at how ROS topics work. Also, feel free to press Ctrl-C to stop turtlesim_node.
 
 #### References
 [ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz.ch/education-students/lectures/ros.html)
