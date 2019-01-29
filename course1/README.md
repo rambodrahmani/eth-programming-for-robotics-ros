@@ -595,6 +595,56 @@ These four types of dependencies are specified using the following respective ta
  - <run_depend>
  - <test_depend>
 
+## Understanding ROS Nodes
+Description: This tutorial introduces ROS graph concepts and discusses the use of roscore, rosnode, and rosrun commandline tools.
+
+### Quick Overview of Graph Concepts
+ - Nodes: A node is an executable that uses ROS to communicate with other nodes.
+ - Messages: ROS data type used when subscribing or publishing to a topic.
+ - Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+ - Master: Name service for ROS (i.e. helps nodes find each other)
+ - rosout: ROS equivalent of stdout/stderr
+ - roscore: Master + rosout + parameter server (parameter server will be introduced later) 
+
+### Nodes
+A node really isn't much more than an executable file within a ROS package. ROS nodes use a ROS client library to communicate with other nodes. Nodes can publish or subscribe to a Topic. Nodes can also provide or use a Service.
+
+### Client Libraries
+ROS client libraries allow nodes written in different programming languages to communicate:
+ - rospy = python client library
+ - roscpp = c++ client library
+
+### roscore
+roscore is the first thing you should run when using ROS. 
+```
+ros@ros:~/catkin_ws$ roscore
+... logging to /home/ros/.ros/log/894496fe-1d6c-11e9-94b0-0800279864a6/roslaunch-ros-3962.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://ros:34441/
+ros_comm version 1.12.14
+
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: kinetic
+ * /rosversion: 1.12.14
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [3973]
+ROS_MASTER_URI=http://ros:11311/
+
+setting /run_id to 894496fe-1d6c-11e9-94b0-0800279864a6
+process[rosout-1]: started with pid [3986]
+started core service [/rosout]
+```
+
 #### References
 [ETH Zurich - Programming for Robotics - ROS](http://www.rsl.ethz.ch/education-students/lectures/ros.html)
 
