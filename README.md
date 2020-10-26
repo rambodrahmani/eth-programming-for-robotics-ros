@@ -41,7 +41,7 @@ installation time.
 There are many different libraries and tools in ROS. To get you started, a
 Desktop-Full installation is reccomended
 ```
-~$ yay -S ros-melodic-desktop-full
+$ yay -S ros-melodic-desktop-full
 ```
 
 #### Initialize rosdep
@@ -49,16 +49,16 @@ Before you can use ROS, you will need to initialize `rosdep`. rosdep enables you
 to easily install system dependencies for source you want to compile and is
 required to run some core components in ROS.
 ```
-~$ sudo rosdep init
-~$ rosdep update
+$ sudo rosdep init
+$ rosdep update
 ```
 
 #### Environment setup
 It's convenient if the ROS environment variables are automatically added to your
 bash session every time a new shell is launched:
 ```
-~$ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-~$ source ~/.bashrc
+$ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
 ```
 
 ## catkin
@@ -80,7 +80,7 @@ Catkin is included by default when ROS is installed. Catkin can also be
 installed from source or prebuilt packages. Most users will want to use the
 prebuilt packages, but installing it from source is also quite simple.
 ```
-~$ sudo apt-get install python-catkin-tools
+$ sudo apt-get install python-catkin-tools
 ```
 
 #### What is a Build System?
