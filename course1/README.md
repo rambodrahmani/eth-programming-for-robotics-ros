@@ -99,8 +99,8 @@ If they are not then you might need to 'source' some setup.\*sh files.
 ### Create a ROS Workspace
 Let's create and build a catkin workspace:
 ```
-$ mkdir -p ~/catkin_ws/src
-$ cd ~/catkin_ws/
+$ mkdir -p catkin_ws/src
+$ cd catkin_ws/
 $ catkin_make
 ```
 The catkin_make command is a convenience tool for working with catkin
@@ -111,7 +111,7 @@ current directory you should now have a 'build' and 'devel' folder. Inside the
 Sourcing any of these files will overlay this workspace on top of your
 environment.
 ```
-catkin_ws $ ls -l
+[catkin_ws] $ ls -l
 total 12
 drwxrwxr-x 7 ros ros 4096 gen 20 12:59 build
 drwxrwxr-x 3 ros ros 4096 gen 20 12:58 devel
@@ -119,12 +119,12 @@ drwxrwxr-x 2 ros ros 4096 gen 20 12:58 src
 ```
 Before continuing source your new setup.\*sh file: 
 ```
-catkin_ws $ source devel/setup.bash
+[catkin_ws] $ source devel/setup.bash
 ```
 To make sure your workspace is properly overlayed by the setup script, make sure
 ROS_PACKAGE_PATH environment variable includes the directory you're in.
 ```
-catkin_ws $ echo $ROS_PACKAGE_PATH
+[catkin_ws] $ echo $ROS_PACKAGE_PATH
 /home/ros/catkin_ws/src:/opt/ros/kinetic/share
 ```
 Now your environment is setup.
@@ -137,7 +137,7 @@ the roscd, rosls, and rospack commandline tools.
 For this tutorial we will inspect a package in ros-tutorials, please install it
 using
 ```
-catkin_ws $ sudo apt-get install ros-kinetic-ros-tutorials
+[catkin_ws] $ sudo apt-get install ros-kinetic-ros-tutorials
 [sudo] password for ros: 
 Reading package lists... Done
 Building dependency tree       
@@ -165,7 +165,7 @@ $ rospack find [package_name]
 ```
 Example:
 ```
-catkin_ws $ rospack find roscpp
+[catkin_ws] $ rospack find roscpp
 /opt/ros/kinetic/share/roscpp
 ```
 #### Using roscd
@@ -178,8 +178,8 @@ $ roscd [locationname[/subdir]]
 ```
 To verify that we have changed to the roscpp package directory, run this example:
 ```
-catkin_ws $ roscd roscpp
-/opt/ros/kinetic/share/roscpp $ pwd
+[catkin_ws] $ roscd roscpp
+[/opt/ros/kinetic/share/roscpp] $ pwd
 /opt/ros/kinetic/share/roscpp
 ````
 You can see that YOUR_INSTALL_PATH/share/roscpp is the same path that rospack
@@ -189,7 +189,7 @@ Note that roscd, like other ROS tools, will only find ROS packages that are
 within the directories listed in your ROS_PACKAGE_PATH. To see what is in your
 ROS_PACKAGE_PATH, type:
 ```
-catkin_ws $ echo $ROS_PACKAGE_PATH
+[catkin_ws] $ echo $ROS_PACKAGE_PATH
 /home/ros/catkin_ws/src:/opt/ros/kinetic/share
 ```
 Your ROS_PACKAGE_PATH should contain a list of directories where you have ROS
@@ -205,8 +205,8 @@ roscd can also move to a subdirectory of a package or stack.
 
 Try:
 ```
-/opt/ros/kinetic/share/roscpp $ roscd roscpp/cmake
-/opt/ros/kinetic/share/roscpp/cmake $ pwd
+[/opt/ros/kinetic/share/roscpp] $ roscd roscpp/cmake
+[/opt/ros/kinetic/share/roscpp/cmake] $ pwd
 /opt/ros/kinetic/share/roscpp/cmake
 ```
 #### roscd log
@@ -215,7 +215,7 @@ you have not run any ROS programs yet, this will yield an error saying that it
 does not yet exist.
 If you have run some ROS program before, try:
 ```
-/opt/ros/kinetic/share/roscpp/cmake $ roscd log
+[/opt/ros/kinetic/share/roscpp/cmake] $ roscd log
 No active roscore
 bash: cd: /home/ros/.ros/log: No such file or directory
 ```
@@ -229,7 +229,7 @@ $ rosls [locationname[/subdir]]
 ```
 Example:
 ```
-opt/ros/kinetic/share/roscpp/cmake $ rosls roscpp_tutorials
+[opt/ros/kinetic/share/roscpp/cmake] $ rosls roscpp_tutorials
 cmake  launch  package.xml  srv
 ```
 #### Tab Completion
@@ -244,8 +244,8 @@ $ roscd roscpp_tut<<< now push the TAB key >>>
 ```
 After pushing the TAB key, the command line should fill out the rest:
 ```
-opt/ros/kinetic/share/roscpp/cmake $ roscd roscpp_tutorials/
-opt/ros/kinetic/share/roscpp_tutorials $ pwd
+[opt/ros/kinetic/share/roscpp/cmake] $ roscd roscpp_tutorials/
+[opt/ros/kinetic/share/roscpp_tutorials] $ pwd
 /opt/ros/kinetic/share/roscpp_tutorials
 ```
 This works because roscpp_tutorials is currently the only ROS package that
@@ -262,9 +262,9 @@ However, in this case there are multiple packages that begin with turtle. Try
 typing TAB another time. This should display all the ROS packages that begin
 with turtle:
 ```
-opt/ros/kinetic/share/roscpp_tutorials $ roscd turtle
+[opt/ros/kinetic/share/roscpp_tutorials] $ roscd turtle
 turtle_actionlib/  turtlesim/         turtle_tf/         turtle_tf2/
-opt/ros/kinetic/share/roscpp_tutorials $ roscd turtle
+[opt/ros/kinetic/share/roscpp_tutorials] $ roscd turtle
 ```
 
 ## Creating a ROS Package
@@ -312,12 +312,12 @@ a new catkin package, and what you can do with it after it has been created.
 First change to the source space directory of the catkin workspace you created
 ```
 # You should have created this in the Creating a Workspace Tutorial
-$ cd ~/catkin_ws/src
+$ cd catkin_ws/src
 ```
 Now use the catkin_create_pkg script to create a new package called
 'beginner_tutorials' which depends on std_msgs, roscpp, and rospy:
 ```
-catkin_ws/src $ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+[catkin_ws/src] $ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
 Created file beginner_tutorials/CMakeLists.txt
 Created file beginner_tutorials/package.xml
 Created folder beginner_tutorials/include/beginner_tutorials
@@ -341,8 +341,8 @@ catkin/commands/catkin_create_pkg.
 ### Building a catkin workspace and sourcing the setup file
 Now you need to build the packages in the catkin workspace: 
 ```
-catkin_ws/src $ cd ~/catkin_ws
-catkin_ws $ catkin_make
+[catkin_ws/src] $ cd ~/catkin_ws
+[catkin_ws] $ catkin_make
 Base path: /home/ros/catkin_ws
 Source space: /home/ros/catkin_ws/src
 Build space: /home/ros/catkin_ws/build
@@ -446,14 +446,14 @@ devel subfolder as you usually find under /opt/ros/$ROSDISTRO_NAME.
 To add the workspace to your ROS environment you need to source the generated
 setup file:
 ```
-catkin_ws $ source ~/catkin_ws/devel/setup.bash
+[catkin_ws] $ source catkin_ws/devel/setup.bash
 ```
 ### package dependencies
 #### First-order dependencies
 When using catkin_create_pkg earlier, a few package dependencies were provided.
 These first-order dependencies can now be reviewed with the rospack tool.
 ```
-catkin_ws $ rospack depends1 beginner_tutorials
+[catkin_ws] $ rospack depends1 beginner_tutorials
 roscpp
 rospy
 std_msgs
@@ -462,8 +462,8 @@ As you can see, rospack lists the same dependencies that were used as arguments
 when running catkin_create_pkg. These dependencies for a package are stored in
 the package.xml file:
 ```
-catkin_ws $ roscd beginner_tutorials
-catkin_ws/src/beginner_tutorials $ cat package.xml 
+[catkin_ws] $ roscd beginner_tutorials
+[catkin_ws/src/beginner_tutorials] $ cat package.xml 
 <?xml version="1.0"?>
 <package format="2">
   <name>beginner_tutorials</name>
@@ -538,7 +538,7 @@ catkin_ws/src/beginner_tutorials $ cat package.xml
 In many cases, a dependency will also have its own dependencies. For instance,
 rospy has other dependencies.
 ```
-catkin_ws/src/beginner_tutorials $ rospack depends1 rospy
+[catkin_ws/src/beginner_tutorials] $ rospack depends1 rospy
 genpy
 roscpp
 rosgraph
@@ -549,7 +549,7 @@ std_msgs
 A package can have quite a few indirect dependencies. Luckily rospack can
 recursively determine all nested dependencies.
 ```
-catkin_ws/src/beginner_tutorials $ rospack depends beginner_tutorials
+[catkin_ws/src/beginner_tutorials] $ rospack depends beginner_tutorials
 cpp_common
 rostime
 roscpp_traits
@@ -701,7 +701,7 @@ communicate:
 roscore is the first thing you should run when using ROS. You will see something
 similar to:
 ```
-catkin_ws $ roscore
+[catkin_ws] $ roscore
 ... logging to /home/ros/.ros/log/894496fe-1d6c-11e9-94b0-0800279864a6/roslaunch-ros-3962.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
@@ -742,7 +742,7 @@ re-source them.
 rosnode displays information about the ROS nodes that are currently running. The
 rosnode list command lists these active nodes:
 ```
-catkin_ws $ rosnode list
+[catkin_ws] $ rosnode list
 /rosout
 ```
 This showed us that there is only one node running: rosout. This is always
@@ -750,7 +750,7 @@ running as it collects and logs nodes' debugging output.
 
 The rosnode info command returns information about a specific node.
 ```
-catkin_ws $ rosnode info /rosout
+[catkin_ws] $ rosnode info /rosout
 --------------------------------------------------------------------------------
 Node [/rosout]
 Publications: 
@@ -786,7 +786,7 @@ So now we can run the turtlesim_node in the turtlesim package.
 
 Then, in a new terminal:
 ```
-catkin_ws $ rosrun turtlesim turtlesim_node
+[catkin_ws] $ rosrun turtlesim turtlesim_node
 [ INFO] [1548756470.179645554]: Starting turtlesim with node name /turtlesim
 [ INFO] [1548756470.187834461]: Spawning turtle [turtle1] at x=[5,544445], y=[5,544445], theta=[0,000000]
 ```
@@ -798,7 +798,7 @@ NOTE: The turtle may look different in your turtlesim window. Don't worry about 
 
 In a new terminal:
 ```
-catkin_ws $ rosnode list
+[catkin_ws] $ rosnode list
 /rosout
 /turtlesim
 ```
@@ -810,13 +810,13 @@ terminal and use ctrl-C). You can also leave it open.
 Now let's re-run it, but this time use a Remapping Argument to change the node's
 name:
 ```
-catkin_ws $ rosrun turtlesim turtlesim_node __name:=rambod
+[catkin_ws] $ rosrun turtlesim turtlesim_node __name:=rambod
 [ INFO] [1548756518.179137569]: Starting turtlesim with node name /rambod
 [ INFO] [1548756518.187649227]: Spawning turtle [turtle1] at x=[5,544445], y=[5,544445], theta=[0,000000]
 ```
 Now, if we go back and use rosnode list:
 ```
-catkin_ws $ rosnode list
+[catkin_ws] $ rosnode list
 /rambod
 /rosout
 /turtlesim
@@ -824,7 +824,7 @@ catkin_ws $ rosnode list
 We see our new /rambod node. Let's use another rosnode command, ping, to test
 that it's up:
 ```
-catkin_ws $ rosnode ping rambod
+[catkin_ws] $ rosnode ping rambod
 rosnode: node is [/rambod]
 pinging /rambod with a timeout of 3.0s
 xmlrpc reply from http://ros:45291/	time=0.541925ms
