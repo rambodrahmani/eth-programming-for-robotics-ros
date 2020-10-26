@@ -292,9 +292,9 @@ The recommended method of working with catkin packages is using a catkin
 workspace, but you can also build catkin packages standalone. A trivial
 workspace might look like this: 
 ```
-workspace_folder/        -- WORKSPACE
-	src/                   -- SOURCE SPACEC
-		MakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
+workspace_folder/              -- WORKSPACE
+	src/                       -- SOURCE SPACEC
+		MakeLists.txt          -- 'Toplevel' CMake file, provided by catkin
 		package_1/
 			CMakeLists.txt     -- CMakeLists.txt file for package_1
 			package.xml        -- Package manifest for package_1
