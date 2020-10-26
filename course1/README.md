@@ -341,7 +341,7 @@ catkin/commands/catkin_create_pkg.
 ### Building a catkin workspace and sourcing the setup file
 Now you need to build the packages in the catkin workspace: 
 ```
-[catkin_ws/src] $ cd ~/catkin_ws
+[catkin_ws/src] $ cd catkin_ws
 [catkin_ws] $ catkin_make
 Base path: /home/ros/catkin_ws
 Source space: /home/ros/catkin_ws/src

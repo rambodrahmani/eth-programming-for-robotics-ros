@@ -1,2 +1,2 @@
-
--DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m -DCATKIN_DEVEL_PREFIX=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/install -G Unix Makefiles
+beginner_tutorials
+-DCATKIN_DEVEL_PREFIX=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/install -G Unix Makefiles
