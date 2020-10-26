@@ -41,7 +41,24 @@ installation time.
 There are many different libraries and tools in ROS. To get you started, a
 Desktop-Full installation is reccomended
 ```
-yay -S ros-melodic-desktop-full
+ros@ros:~$ yay -S ros-melodic-desktop-full
+```
+
+#### Initialize rosdep
+Before you can use ROS, you will need to initialize `rosdep`. rosdep enables you
+to easily install system dependencies for source you want to compile and is
+required to run some core components in ROS.
+```
+ros@ros:~$ sudo rosdep init
+ros@ros:~$ rosdep update
+```
+
+#### Environment setup
+It's convenient if the ROS environment variables are automatically added to your
+bash session every time a new shell is launched:
+```
+ros@ros:~$ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+ros@ros:~$ source ~/.bashrc
 ```
 
 ## catkin
