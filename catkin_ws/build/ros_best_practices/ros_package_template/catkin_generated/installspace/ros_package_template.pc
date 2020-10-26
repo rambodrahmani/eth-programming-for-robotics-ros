@@ -1,8 +1,0 @@
-prefix=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/install
-
-Name: ros_package_template
-Description: Description of ros_package_template
-Version: 0.1.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib -lros_package_template_core
-Requires: roscpp sensor_msgs

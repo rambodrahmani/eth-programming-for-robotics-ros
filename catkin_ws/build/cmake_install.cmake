@@ -136,8 +136,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/beginner_tutorials/cmake_install.cmake")
-  include("/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/ros_best_practices/ros_package_template/cmake_install.cmake")
 
 endif()
 
