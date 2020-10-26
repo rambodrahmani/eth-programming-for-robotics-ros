@@ -8,13 +8,13 @@ to work with robots. They learn how to create software including simulation, to
 interface sensors and actuators, and to integrate control algorithms.
 
 ### Objective:
-- ROS architecture: Master, nodes, topics, messages, services, parameters and actions
-- Console commands: Navigating and analyzing the ROS system and the catkin workspace
-- Creating ROS packages: Structure, launch-files, and best practices
-- ROS C++ client library (roscpp): Creating your own ROS C++ programs
-- Simulating with ROS: Gazebo simulator, robot models (URDF) and simulation environments (SDF)
-- Working with visualizations (RViz) and user interface tools (rqt)
-- Inside ROS: TF transformation system, time, bags
+- ROS architecture: Master, nodes, topics, messages, services, parameters and actions;
+- Console commands: Navigating and analyzing the ROS system and the catkin workspace;
+- Creating ROS packages: Structure, launch-files, and best practices;
+- ROS C++ client library (roscpp): Creating your own ROS C++ programs;
+- Simulating with ROS: Gazebo simulator, robot models (URDF) and simulation environments (SDF);
+- Working with visualizations (RViz) and user interface tools (rqt);
+- Inside ROS: TF transformation system, time, bags.
 
 ### Content:
 This course consists of a guided tutorial and exercises with increasing level of
@@ -24,8 +24,25 @@ actuators, and finally how to implement first closed loop control systems.
 
 ## The course content has been slightly modified in order to add additional details and personal notes for each of the arguments presented.
 
-## ROS Kinetic
-Throughout this course we will be using ROS Kinetic installed on Ubuntu 16.04.
+## ROS Melodic
+Throughout this course we will be using ROS Melodic installed on Arch Linux.
+
+### Arch Linux install of ROS Melodic
+Since you'll be installing a lot of packages, it is recommended to use an AUR
+helper like `yay` or `pikaur`.
+
+It is also recommended to use the [arch4edu](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu)
+repository. They are hosting many packages related to education and research,
+including robotics. Adding a repository allows for you to install binaries of
+packages, instead of compiling them from source. This will greatly speed up your
+installation time.
+
+#### Installation
+There are many different libraries and tools in ROS. To get you started, a
+Desktop-Full installation is reccomended
+```
+yay -S ros-melodic-desktop-full
+```
 
 ## catkin
 ### Overview
