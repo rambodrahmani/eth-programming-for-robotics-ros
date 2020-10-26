@@ -1,8 +1,8 @@
-prefix=/home/ros/catkin_ws/devel
+prefix=/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/devel
 
 Name: beginner_tutorials
 Description: Description of beginner_tutorials
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/ros/catkin_ws/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

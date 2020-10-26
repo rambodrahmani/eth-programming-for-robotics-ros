@@ -1,1 +1,1 @@
-/usr/bin/c++  -fPIC   -shared -Wl,-soname,libgmock_main.so -o libgmock_main.so CMakeFiles/gmock_main.dir/usr/src/gtest/src/gtest-all.cc.o CMakeFiles/gmock_main.dir/src/gmock-all.cc.o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -lpthread 
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libgmock_main.so.1.10.0 -o ../lib/libgmock_main.so.1.10.0 CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/lib ../lib/libgmock.so.1.10.0 ../lib/libgtest.so.1.10.0 -lpthread 

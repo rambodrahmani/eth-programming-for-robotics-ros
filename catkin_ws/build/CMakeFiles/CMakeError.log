@@ -1,55 +1,60 @@
-Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/ros/catkin_ws/build/CMakeFiles/CMakeTmp
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1e5f1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1e5f1.dir/build.make CMakeFiles/cmTC_1e5f1.dir/build
-make[1]: Entering directory '/home/ros/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1e5f1.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_1e5f1.dir/CheckSymbolExists.c.o   -c /home/ros/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_1e5f1
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e5f1.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_1e5f1.dir/CheckSymbolExists.c.o  -o cmTC_1e5f1 -rdynamic 
-CMakeFiles/cmTC_1e5f1.dir/CheckSymbolExists.c.o: In function `main':
-CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+Run Build Command(s):/usr/bin/make cmTC_8ce9a/fast && /usr/bin/make  -f CMakeFiles/cmTC_8ce9a.dir/build.make CMakeFiles/cmTC_8ce9a.dir/build
+make[1]: Entering directory '/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8ce9a.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_8ce9a.dir/src.c.o -c /home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_8ce9a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ce9a.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD -rdynamic CMakeFiles/cmTC_8ce9a.dir/src.c.o -o cmTC_8ce9a 
+/usr/bin/ld: CMakeFiles/cmTC_8ce9a.dir/src.c.o: in function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x4a): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x56): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x67): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_1e5f1.dir/build.make:97: recipe for target 'cmTC_1e5f1' failed
-make[1]: *** [cmTC_1e5f1] Error 1
-make[1]: Leaving directory '/home/ros/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_1e5f1/fast' failed
-make: *** [cmTC_1e5f1/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_8ce9a.dir/build.make:106: cmTC_8ce9a] Error 1
+make[1]: Leaving directory '/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:140: cmTC_8ce9a/fast] Error 2
 
-File /home/ros/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
-/* */
+
+Source file was:
 #include <pthread.h>
 
-int main(int argc, char** argv)
+void* test_func(void* data)
 {
-  (void)argv;
-#ifndef pthread_create
-  return ((int*)(&pthread_create))[argc];
-#else
-  (void)argc;
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
   return 0;
-#endif
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/ros/catkin_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_47165/fast"
-/usr/bin/make -f CMakeFiles/cmTC_47165.dir/build.make CMakeFiles/cmTC_47165.dir/build
-make[1]: Entering directory '/home/ros/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_47165.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_47165.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_47165
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_47165.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_47165.dir/CheckFunctionExists.c.o  -o cmTC_47165 -rdynamic -lpthreads 
+Run Build Command(s):/usr/bin/make cmTC_81d1b/fast && /usr/bin/make  -f CMakeFiles/cmTC_81d1b.dir/build.make CMakeFiles/cmTC_81d1b.dir/build
+make[1]: Entering directory '/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_81d1b.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_81d1b.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_81d1b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81d1b.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create -rdynamic CMakeFiles/cmTC_81d1b.dir/CheckFunctionExists.c.o -o cmTC_81d1b  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_47165.dir/build.make:97: recipe for target 'cmTC_47165' failed
-make[1]: *** [cmTC_47165] Error 1
-make[1]: Leaving directory '/home/ros/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_47165/fast' failed
-make: *** [cmTC_47165/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_81d1b.dir/build.make:106: cmTC_81d1b] Error 1
+make[1]: Leaving directory '/home/rambodrahmani/DevOps/eth-programming-for-robotics-ros/catkin_ws/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:140: cmTC_81d1b/fast] Error 2
+
 
 

@@ -1,5 +1,13 @@
 # Programming for Robotics (ROS) - Course 1
 
+## Unable to find either executable 'empy' or Python module 'em'... try installing the package 'python-empy'
+The problem is that catkin is either using the python2 executable or looking
+into the python2 directories. You either install python2 empy, or tell catkin to
+use python3:
+```
+catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m
+```
+
 ## Ubuntu install of ROS Kinetic
 
 ### Installation
